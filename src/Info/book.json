@@ -1,0 +1,30 @@
+[{
+  "name": "深入理解计算机基础",
+  "author":"Bryant,Hallaron",
+  "remain":10,
+  "bnum":"000",
+  "price":"128￥",,,
+  "pic":"/static/images/icsimage.jpg",
+  "type":0,
+  "router":"details/book1"
+},
+  {
+    "name": "明朝那些事儿",
+    "author":"当年明月",
+    "remain":12,
+    "bnum":"002",
+    "price":"68￥",
+    "pic":"/static/images/mingdynasty.jpg",
+    "type":3,
+    "router":"details/book2"
+  },
+  {
+    "name": "book1",
+    "author":"author1",
+    "remain":11,
+    "bnum":"003",
+    "price":"67￥",
+    "pic":"/static/images/book.jpg",
+    "type":3,
+    "router":""
+  }]

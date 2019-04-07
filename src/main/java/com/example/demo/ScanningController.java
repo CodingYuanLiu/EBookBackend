@@ -1,19 +1,25 @@
 package com.example.demo;
 
+import java.io.*;
+import java.util.ArrayList;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import org.apache.commons.io.IOUtils;
+
 import java.util.concurrent.atomic.AtomicLong;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class ScanningController {
+public class ScanningController{
 
     @CrossOrigin(origins = "http://localhost:8081")
-    @GetMapping("/scanning")
-    public String Receiving(@RequestParam(required=false, defaultValue="No params") String book) {
-        return book;
+    @RequestMapping("/scanning")
+    public JSONArray Receiving()  throws IOException{
+        InputStream inputStream = new FileInputStream("./src/Info/book.json");
+        String text = IOUtils.toString(inputStream,"utf8");
+        JSONArray books = JSON.parseArray(text);
+        return books;
     }
 
 }
