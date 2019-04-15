@@ -17,7 +17,7 @@ public class DemoApplication {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
-
+	/*
 	@Bean
 	public CommandLineRunner demo(BookinfoRepository repository) {
 		return(args) -> {
@@ -29,12 +29,14 @@ public class DemoApplication {
 					"/static/images/book.jpg","78￥","",41,2));
 		};
 	}
+	*/
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/scanning").allowedOrigins("http://localhost:8081");
+				registry.addMapping("/checkdupusername").allowedOrigins("http://localhost:8081");
 			}
 		};
 	}
