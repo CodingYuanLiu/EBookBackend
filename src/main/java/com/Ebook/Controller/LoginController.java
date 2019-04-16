@@ -18,12 +18,12 @@ public class LoginController {
                             @RequestParam(required=true,defaultValue="") String password){
         List<User> finduser = repo.findByUsername(username);
         if(finduser.size() == 0){
-            return "Unexist";
+            return "Unexist Username";
         }
         else{
             User user= finduser.get(0);
             if(user.checkpassword(username,password)) {
-                return "Valid";
+                return user.getAuthority();
             }
             else{
                 return "Wrong password";

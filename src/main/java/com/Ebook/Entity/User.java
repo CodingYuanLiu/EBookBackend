@@ -29,4 +29,6 @@ public class User {
         else
             return false;
     }
+    public String getAuthority(){return this.authority;}
+
 }
