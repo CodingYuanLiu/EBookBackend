@@ -23,7 +23,10 @@ public class LoginController {
         else{
             User user= finduser.get(0);
             if(user.checkpassword(username,password)) {
-                return user.getAuthority();
+                String info=new String(user.getAuthority());
+                info="{\"Authority\":\""+info+"\",";
+                info=info+"\"userid\":" + user.getUserid();
+                return info+"}";
             }
             else{
                 return "Wrong password";

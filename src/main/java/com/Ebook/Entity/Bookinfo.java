@@ -31,6 +31,16 @@ public class Bookinfo {
     public void setname(String name){
         this.name = name;
     };
+    public String getName(){ return this.name;}
+    public String getAuthor(){ return this.author;}
+    public String getPic(){ return this.pic;}
+    public String getPrice(){ return this.price;}
+    public String getRouter(){ return this.router;}
+    public int getRemain(){ return this.remain; }
+    public int getType(){ return this.type; }
+    public int getBnum(){return this.bnum;}
+
+
     public void setauthor(String author){
         this.author = author;
     };

@@ -4,9 +4,9 @@ import java.io.*;
 import com.Ebook.Entity.Bookinfo;
 import com.Ebook.Repository.BookinfoRepository;
 import java.util.Iterator;
+import java.util.List;
 
-import net.sf.json.JSONArray;
-
+import com.alibaba.fastjson.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,14 +18,8 @@ public class ScanningController{
     @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping("/scanning")
     public JSONArray Receiving()  throws IOException{
-        String jsonstr = "[";
-        
-        for(Iterator<Bookinfo> it = repo.findAll().iterator(); ((Iterator) it).hasNext();) {
-
-            jsonstr += it.next().toJSONString() + ",";
-        }
-        jsonstr+="]";
-        return JSONArray.fromObject(jsonstr);
+        List<Bookinfo> books = repo.findAll();
+        return JSONArray.parseArray(JSON.toJSONString(books));
     }
 
 }

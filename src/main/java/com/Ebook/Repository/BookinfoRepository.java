@@ -5,7 +5,11 @@ import org.springframework.data.repository.CrudRepository;
 
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 
 @Repository
 public interface BookinfoRepository extends CrudRepository<Bookinfo, Long> {
+    public Bookinfo findByBnum(int id);
+    public List<Bookinfo> findAll();
 }
