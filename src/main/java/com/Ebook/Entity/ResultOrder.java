@@ -9,7 +9,8 @@ public class ResultOrder {
     private int bnum;
     private int num;
     private String price;
-    public ResultOrder(int orderid,String time,String pic,String name,String author,int bum,int num,String price){
+    private int userid;
+    public ResultOrder(int orderid,String time,String pic,String name,String author,int bum,int num,String price,int userid){
         this.orderid=orderid;
         this.time=time;
         this.pic=pic;
@@ -18,6 +19,7 @@ public class ResultOrder {
         this.bnum=bum;
         this.num=num;
         this.price=price;
+        this.userid=userid;
     }
     public void setOrderid(int orderid) { this.orderid=orderid;}
     public void setTime(String time) { this.time=time;}
@@ -27,6 +29,8 @@ public class ResultOrder {
     public void setBnum(int bnum){ this.bnum=bnum;}
     public void setNum(int num) {this.num = num;}
     public void setPrice(String price){ this.price=price;}
+    public void setUserid(int userid){ this.userid=userid;}
+    public int getUserid() { return this.userid;}
     public int getOrderid() { return this.orderid;}
     public String getTime() {return this.time;}
     public String getPic() { return this.pic;}

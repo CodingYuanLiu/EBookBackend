@@ -13,6 +13,11 @@ public class Orders {
     int userid;
     String time;
     protected Orders(){}
+    public Orders(int userid,String time){
+        this.userid=userid;
+        this.time=time;
+    }
+
     public void setOrderid(int orderid){ this.orderid = orderid;}
     public void setUserid(int userid) { this.userid = userid;}
     public void setTime(String time) { this.time = time;}

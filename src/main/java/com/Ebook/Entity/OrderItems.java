@@ -15,6 +15,11 @@ public class OrderItems {
     int bnum;
     int num;
     protected OrderItems(){}
+    public OrderItems(int orderid,int bnum,int num){
+        this.orderid=orderid;
+        this.bnum=bnum;
+        this.num=num;
+    }
     public void setOrderid(int orderid){ this.orderid = orderid;}
     public void setItemid(int itemid) { this.itemid = itemid;}
     public void setBnum(int bnum) { this.bnum = bnum;}
