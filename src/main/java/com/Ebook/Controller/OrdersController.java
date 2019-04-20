@@ -26,7 +26,7 @@ public class OrdersController {
 
     @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping("/orders")
-    public JSONArray Receiving(@RequestParam(required=true,defaultValue="") String userid){
+    public JSONArray Receiving(@RequestParam(required=true,defaultValue="1") String userid){
         int uid = Integer.parseInt(userid);
         List<ResultOrder> result;
         if(uid==1)//Is admin

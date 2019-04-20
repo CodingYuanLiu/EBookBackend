@@ -22,6 +22,9 @@ public class LoginController {
         }
         else{
             User user= finduser.get(0);
+            if(user.getAuthority().equals("BLOCKED")){
+                return "BLOCKED USER";
+            }
             if(user.checkpassword(username,password)) {
                 String info=new String(user.getAuthority());
                 info="{\"Authority\":\""+info+"\",";
