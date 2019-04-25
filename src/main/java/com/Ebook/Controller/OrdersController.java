@@ -65,7 +65,7 @@ public class OrdersController {
                 unseccessful+=1;
                 continue;
             }
-            book.setremain(book.getRemain()-num);
+            book.setRemain(book.getRemain()-num);
             bookrepo.save(book);
             orderitemrepo.save(new OrderItems(order.getOrderid(),bnum,num));
         }

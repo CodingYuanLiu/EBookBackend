@@ -14,7 +14,5 @@ import java.util.List;
 public interface BookinfoRepository extends CrudRepository<Bookinfo, Long> {
     public Bookinfo findByBnum(int id);
     public List<Bookinfo> findAll();
-    @Modifying
-    @Query(value="update Bookinfo set remain=:remain where bnum=:bnum")
-    public void updateRemainByBnum(int bnum,int remain);
+
 }

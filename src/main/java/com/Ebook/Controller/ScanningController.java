@@ -22,4 +22,12 @@ public class ScanningController{
         return JSONArray.parseArray(JSON.toJSONString(books));
     }
 
+    @CrossOrigin(origins = "http://localhost:8081")
+    @RequestMapping("/modifying")
+    public Bookinfo ModifyBook(@RequestParam(required=true,defaultValue = "") String bookstring){
+        Bookinfo book = JSON.parseObject(bookstring,Bookinfo.class);
+        //int bnum = book.getInteger("bnum");
+        repo.save(book);
+        return book;
+    }
 }

@@ -27,8 +27,18 @@ public class Bookinfo {
         this.remain=remain;
         this.type=type;
     }
+    public Bookinfo(String name, String author,int bnum,String pic,String price,String router,int remain,int type){
+        this.name = name;
+        this.author=author;
+        this.bnum=bnum;
+        this.pic=pic;
+        this.price = price;
+        this.router=router;
+        this.remain=remain;
+        this.type=type;
+    }
 
-    public void setname(String name){
+    public void setName(String name){
         this.name = name;
     };
     public String getName(){ return this.name;}
@@ -41,25 +51,25 @@ public class Bookinfo {
     public int getBnum(){return this.bnum;}
 
 
-    public void setauthor(String author){
+    public void setAuthor(String author){
         this.author = author;
     };
-    public void setbum(int bnum){
+    public void setBnum(int bnum){
         this.bnum = bnum;
     };
-    public void setpic(String pic){
+    public void setPic(String pic){
         this.pic = pic;
     };
-    public void setprice(String price) {
+    public void setPrice(String price) {
         this.price = price;
     };
-    public void setrouter(String router){
+    public void setRouter(String router){
         this.router = router;
     };
-    public void setremain(int remain){
+    public void setRemain(int remain){
         this.remain = remain;
     };
-    public void settype(int type){
+    public void setType(int type){
         this.type = type;
     }
     public String toJSONString(){
