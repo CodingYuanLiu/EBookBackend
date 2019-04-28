@@ -8,6 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 
@@ -21,7 +22,8 @@ public interface OrdersRepository extends CrudRepository<Orders, Long> {
     @Query(value = "select new com.Ebook.Entity.ResultOrder(" +
             "a.orderid as orderid,a.time as time,c.pic as pic,c.name as name,c.author as author,c.bnum as bnum,b.num as num,c.price as price,a.userid as userid)" +
             " from Orders a, OrderItems b, Bookinfo c where a.orderid=b.orderid and b.bnum=c.bnum")
-    List<ResultOrder> selectAll();
+    List<ResultOrder> selectAllUsers();
 
     public Orders findByTime(String time);
+
 }

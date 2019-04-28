@@ -7,6 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 
@@ -14,5 +15,6 @@ import java.util.List;
 public interface BookinfoRepository extends CrudRepository<Bookinfo, Long> {
     public Bookinfo findByBnum(int id);
     public List<Bookinfo> findAll();
-
+    @Transactional
+    public void deleteByBnum(int bnum);
 }

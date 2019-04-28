@@ -1,9 +1,6 @@
 package com.Ebook.Entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class OrderItems {
@@ -11,7 +8,12 @@ public class OrderItems {
     @GeneratedValue(strategy=GenerationType.AUTO)
     int itemid;
 
+    //@ManyToOne
+    //@JoinColumn(name="order_fk")
     int orderid;
+
+    //@ManyToOne
+    //@JoinColumn(name="bnum_fk")
     int bnum;
     int num;
     protected OrderItems(){}

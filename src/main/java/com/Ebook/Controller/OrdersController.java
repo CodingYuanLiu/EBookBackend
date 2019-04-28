@@ -31,7 +31,7 @@ public class OrdersController {
         List<ResultOrder> result;
         if(uid==1)//Is admin
         {
-            result = orderrepo.selectAll();
+            result = orderrepo.selectAllUsers();
         }
         else
             result = orderrepo.select(uid);
