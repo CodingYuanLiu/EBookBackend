@@ -39,7 +39,6 @@ public class ScanningController{
     public int DeleteBook(@RequestParam(required=true,defaultValue="") String bnumstr){
         int bnum = Integer.parseInt(bnumstr);
         repo.deleteByBnum(bnum);
-        oirepo.deleteByBnum(bnum);
         return bnum;
     }
 }

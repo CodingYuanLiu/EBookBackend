@@ -1,8 +1,5 @@
 package com.Ebook;
 
-import com.Ebook.Entity.Bookinfo;
-import com.Ebook.Repository.BookinfoRepository;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.*;
 import org.springframework.context.annotation.Bean;
@@ -11,10 +8,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 
 @SpringBootApplication
-public class DemoApplication {
+public class EbookApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(EbookApplication.class, args);
 	}
 
 	/*

@@ -24,17 +24,22 @@ public class OrdersController {
     @Autowired
     private BookinfoRepository bookrepo;
 
+    @Autowired
+    private UserRepository userrepo;
     @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping("/orders")
     public JSONArray Receiving(@RequestParam(required=true,defaultValue="1") String userid){
         int uid = Integer.parseInt(userid);
-        List<ResultOrder> result;
+        List<OrderItems> result;
         if(uid==1)//Is admin
         {
-            result = orderrepo.selectAllUsers();
+            result = orderitemrepo.findAll();
         }
-        else
-            result = orderrepo.select(uid);
+        else{
+            User user=userrepo.findByUserid(uid);
+            Orders order=orderrepo.findByUser(user);
+            result = orderitemrepo.findByOrder(order);
+        }
         return JSONArray.parseArray(JSON.toJSONString(result));
     }
 
@@ -46,7 +51,7 @@ public class OrdersController {
         int userid=Integer.parseInt(re_userid);
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
         String date=df.format(new Date());
-        orderrepo.save(new Orders(userid,date));
+        orderrepo.save(new Orders(userrepo.findByUserid(userid),date));
         Orders order = orderrepo.findByTime(date);
 
         String ret="Valid";
@@ -67,12 +72,11 @@ public class OrdersController {
             }
             book.setRemain(book.getRemain()-num);
             bookrepo.save(book);
-            orderitemrepo.save(new OrderItems(order.getOrderid(),bnum,num));
+            orderitemrepo.save(new OrderItems(order,book,num));
         }
         if(unseccessful == arr.size()){
             ret = "Fail";
         }
-
         return ret;
     }
 }

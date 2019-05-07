@@ -9,13 +9,15 @@ public class Bookinfo {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int bnum;
+
+    private int isbn;
     private String pic;
     private String price;
     private String router;
     private int remain;
     private int type;
     protected Bookinfo() {}
-    public Bookinfo(String name, String author,String pic,String price,String router,int remain,int type){
+    public Bookinfo(String name, String author,String pic,String price,String router,int remain,int type,int isbn){
         this.name = name;
         this.author=author;
         this.pic=pic;
@@ -23,8 +25,9 @@ public class Bookinfo {
         this.router=router;
         this.remain=remain;
         this.type=type;
+        this.isbn = isbn;
     }
-    public Bookinfo(String name, String author,int bnum,String pic,String price,String router,int remain,int type){
+    public Bookinfo(String name, String author,int bnum,String pic,String price,String router,int remain,int type,int id){
         this.name = name;
         this.author=author;
         this.bnum=bnum;
@@ -33,6 +36,7 @@ public class Bookinfo {
         this.router=router;
         this.remain=remain;
         this.type=type;
+        this.isbn=isbn;
     }
 
     public void setName(String name){
@@ -46,8 +50,9 @@ public class Bookinfo {
     public int getRemain(){ return this.remain; }
     public int getType(){ return this.type; }
     public int getBnum(){return this.bnum;}
+    public int getIsbn(){ return this.isbn;}
 
-
+    public void setIsbn(int isbn){ this.isbn= isbn;}
     public void setAuthor(String author){
         this.author = author;
     };

@@ -13,7 +13,7 @@ import java.util.List;
 
 @Repository
 public interface BookinfoRepository extends CrudRepository<Bookinfo, Long> {
-    public Bookinfo findByBnum(int id);
+    public Bookinfo findByBnum(int bnum);
     public List<Bookinfo> findAll();
     @Transactional
     public void deleteByBnum(int bnum);

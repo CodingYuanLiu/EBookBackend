@@ -1,6 +1,8 @@
 package com.Ebook.Repository;
 
+import com.Ebook.Entity.Bookinfo;
 import com.Ebook.Entity.OrderItems;
+import com.Ebook.Entity.Orders;
 import org.springframework.data.repository.CrudRepository;
 
 import org.springframework.stereotype.Repository;
@@ -11,7 +13,10 @@ import java.util.List;
 
 @Repository
 public interface OrderItemsRepository extends CrudRepository<OrderItems, Long> {
-    public List<OrderItems> findByOrderid(int orderid);
+
+    public List<OrderItems> findByOrder(Orders order);
+
+    public List<OrderItems> findAll();
     @Transactional
-    public void deleteByBnum(int bnum);
+    public void deleteByBook(Bookinfo book);
 }

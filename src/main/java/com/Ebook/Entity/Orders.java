@@ -1,27 +1,27 @@
 package com.Ebook.Entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Orders {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     int orderid;
-    int userid;
+
+    @ManyToOne(cascade = CascadeType.ALL,optional = true)
+    @JoinColumn(name="userid",referencedColumnName = "userid")
+    User user;
     String time;
     protected Orders(){}
-    public Orders(int userid,String time){
-        this.userid=userid;
+    public Orders(User user,String time){
+        this.user=user;
         this.time=time;
     }
 
     public void setOrderid(int orderid){ this.orderid = orderid;}
-    public void setUserid(int userid) { this.userid = userid;}
+    public void setUser(User user) { this.user = user;}
     public void setTime(String time) { this.time = time;}
     public int getOrderid() { return this.orderid;}
-    public int getUserid() { return this.userid;}
+    public User getUser() { return this.user;}
     public String getTime() {return this.time;}
 }

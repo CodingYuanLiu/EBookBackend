@@ -1,6 +1,7 @@
 package com.Ebook.Entity;
 
 import javax.persistence.*;
+import java.awt.print.Book;
 
 @Entity
 public class OrderItems {
@@ -8,26 +9,27 @@ public class OrderItems {
     @GeneratedValue(strategy=GenerationType.AUTO)
     int itemid;
 
-    //@ManyToOne
-    //@JoinColumn(name="order_fk")
-    int orderid;
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="orderid",referencedColumnName = "orderid")
+    Orders order;
 
-    //@ManyToOne
-    //@JoinColumn(name="bnum_fk")
-    int bnum;
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="bnum",referencedColumnName = "bnum")
+    Bookinfo book;
+
     int num;
     protected OrderItems(){}
-    public OrderItems(int orderid,int bnum,int num){
-        this.orderid=orderid;
-        this.bnum=bnum;
+    public OrderItems(Orders order,Bookinfo book,int num){
+        this.order=order;
+        this.book=book;
         this.num=num;
     }
-    public void setOrderid(int orderid){ this.orderid = orderid;}
+    public void setOrder(Orders order){ this.order = order;}
     public void setItemid(int itemid) { this.itemid = itemid;}
-    public void setBnum(int bnum) { this.bnum = bnum;}
+    public void setBook(Bookinfo book) { this.book = book;}
     public void setNum(int num) { this.num = num;}
-    public int getOrderid() { return this.orderid;}
+    public Orders getOrder() { return this.order;}
     public int getItemid() { return this.itemid;}
-    public int getBnum() {return this.bnum;}
+    public Bookinfo getBook() {return this.book;}
     public int getNum() {return this.num;}
 }
