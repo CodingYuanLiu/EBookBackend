@@ -27,6 +27,7 @@ public class EbookApplication {
 		};
 	}
 	*/
+	/*
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
@@ -37,5 +38,5 @@ public class EbookApplication {
 			}
 		};
 	}
-
-	}
+*/
+}

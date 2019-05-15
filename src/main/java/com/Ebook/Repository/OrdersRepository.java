@@ -27,7 +27,7 @@ public interface OrdersRepository extends CrudRepository<Orders, Long> {
     List<ResultOrder> selectAllUsers();
     */
     public Orders findByOrderid(int orderid);
-    public Orders findByUser(User user);
+    public List<Orders> findByUser(User user);
     public Orders findByTime(String time);
 
 }

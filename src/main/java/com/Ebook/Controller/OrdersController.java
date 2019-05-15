@@ -3,6 +3,7 @@ package com.Ebook.Controller;
 import com.Ebook.Entity.*;
 import com.Ebook.Repository.*;
 
+import com.Ebook.Service.OrdersService;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -17,66 +18,28 @@ import java.util.Map;
 
 @RestController
 public class OrdersController {
+    /*
     @Autowired
     private OrdersRepository orderrepo;
     @Autowired
     private OrderItemsRepository orderitemrepo;
     @Autowired
     private BookinfoRepository bookrepo;
-
     @Autowired
     private UserRepository userrepo;
+    */
+    @Autowired
+    private OrdersService Service;
     @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping("/orders")
     public JSONArray Receiving(@RequestParam(required=true,defaultValue="1") String userid){
-        int uid = Integer.parseInt(userid);
-        List<OrderItems> result;
-        if(uid==1)//Is admin
-        {
-            result = orderitemrepo.findAll();
-        }
-        else{
-            User user=userrepo.findByUserid(uid);
-            Orders order=orderrepo.findByUser(user);
-            result = orderitemrepo.findByOrder(order);
-        }
-        return JSONArray.parseArray(JSON.toJSONString(result));
+        return Service.GetOrdersService(userid);
     }
 
     @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping("/submitorder")
     public String Submit(@RequestParam(required=true,defaultValue = "")String receive,
                          @RequestParam(required = true,defaultValue = "")String re_userid) {
-        JSONArray arr=JSON.parseArray(receive);
-        int userid=Integer.parseInt(re_userid);
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-        String date=df.format(new Date());
-        orderrepo.save(new Orders(userrepo.findByUserid(userid),date));
-        Orders order = orderrepo.findByTime(date);
-
-        String ret="Valid";
-        int unseccessful=0;
-
-
-        JSONObject item=new JSONObject();
-        int bnum=0;int num=0;
-        for(int i=0;i<arr.size();i++){
-            item=arr.getJSONObject(i);
-            bnum = item.getInteger("bnum");
-            num = item.getInteger("num");
-            Bookinfo book = bookrepo.findByBnum(bnum);
-            if(book.getRemain()-num <0){
-                ret="Not enough remaining";
-                unseccessful+=1;
-                continue;
-            }
-            book.setRemain(book.getRemain()-num);
-            bookrepo.save(book);
-            orderitemrepo.save(new OrderItems(order,book,num));
-        }
-        if(unseccessful == arr.size()){
-            ret = "Fail";
-        }
-        return ret;
+        return Service.SubmitOrderService(receive,re_userid);
     }
 }
