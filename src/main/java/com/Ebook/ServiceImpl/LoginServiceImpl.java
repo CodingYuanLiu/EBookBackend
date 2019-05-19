@@ -15,24 +15,33 @@ public class LoginServiceImpl implements LoginService {
     private UserDao repo;
 
     @Override
-    public String Login(String username, String password) {
+    public JSONObject Login(String username, String password) {
+        JSONObject result = new JSONObject();
         List<User> finduser = repo.findByUsername(username);
         if(finduser.size() == 0){
-            return "Unexist Username";
+            result.put("code",401);
+            result.put("data","Unexist Username");
+            return result;
         }
         else{
             User user= finduser.get(0);
             if(user.getAuthority().equals("BLOCKED")){
-                return "BLOCKED USER";
+                result.put("code",403);
+                result.put("data","BLOCKED USER");
+                return result;
             }
             if(user.checkpassword(username,password)) {
-                String info=new String(user.getAuthority());
-                info="{\"Authority\":\""+info+"\",";
-                info=info+"\"userid\":" + user.getUserid();
-                return info+"}";
+                JSONObject info = new JSONObject();
+                info.put("Authority",user.getAuthority());
+                info.put("userid",user.getUserid());
+                result.put("code",200);
+                result.put("data",info);
+                return result;
             }
-            else{
-                return "Wrong password";
+            else {
+                result.put("code", 401);
+                result.put("data", "Wrong password");
+                return result;
             }
         }
     }

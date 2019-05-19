@@ -4,12 +4,14 @@ import java.awt.print.Book;
 import java.io.*;
 import com.Ebook.Entity.Bookinfo;
 import com.Ebook.Entity.OrderItems;
+import com.Ebook.Entity.Response;
 import com.Ebook.Repository.BookinfoRepository;
 import com.Ebook.Repository.OrderItemsRepository;
 import java.util.Iterator;
 import java.util.List;
 
 import com.Ebook.Service.ScanningService;
+import com.Ebook.Util.ResponseUtil;
 import com.alibaba.fastjson.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,21 +25,22 @@ public class ScanningController{
 
     @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping("/scanning")
-    public JSONArray Receiving()  throws IOException{
-        return Service.GetBookService();
+    public Response Books()  throws IOException{
+        return ResponseUtil.Success(Service.GetBookService());
     }
 
 
     @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping("/modifying")
-    public Bookinfo ModifyBook(@RequestParam(required=true,defaultValue = "") String bookstring){
-        return Service.ModifyService(bookstring);
+    public Response ModifyBook(@RequestParam(required=true,defaultValue = "") String bookstring){
+        return ResponseUtil.Success(Service.ModifyService(bookstring));
     }
 
 
     @CrossOrigin(origins="http://localhost:8081")
     @RequestMapping("/delete")
-    public int DeleteBook(@RequestParam(required=true,defaultValue="") String bnumstr){
-        return Service.DeleteBookService(bnumstr);
+    public Response DeleteBook(@RequestParam(required=true,defaultValue="") String bnumstr){
+        Service.DeleteBookService(bnumstr);
+        return ResponseUtil.Success();
     }
 }

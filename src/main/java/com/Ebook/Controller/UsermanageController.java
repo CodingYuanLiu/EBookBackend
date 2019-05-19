@@ -5,6 +5,7 @@ import com.Ebook.Entity.*;
 import com.Ebook.Repository.*;
 
 import com.Ebook.Service.UsermanageService;
+import com.Ebook.Util.ResponseUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -24,12 +25,13 @@ public class UsermanageController {
 
     @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping("/userinfo")
-    public JSONArray Receive(){
-        return Service.GetUserinfoService();
+    public Response Receive(){
+        return ResponseUtil.Success(Service.GetUserinfoService());
     }
     @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping("/userblock")
-    public String Block(@RequestParam(required=true,defaultValue="") String userid){
-        return Service.BlockService(userid);
+    public Response Block(@RequestParam(required=true,defaultValue="") String userid){
+        Service.BlockService(userid);
+        return ResponseUtil.Success();
     }
 }
