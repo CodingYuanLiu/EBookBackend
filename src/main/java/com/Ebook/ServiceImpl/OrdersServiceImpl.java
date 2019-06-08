@@ -21,7 +21,7 @@ public class OrdersServiceImpl implements OrdersService {
     private UserDao userrepo;
 
     @Autowired
-    private BookinfoDao bookrepo;
+    private BookDao bookrepo;
 
     @Autowired
     private OrderItemsDao orderitemrepo;

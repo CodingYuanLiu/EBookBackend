@@ -1,8 +1,10 @@
 package com.Ebook.ServiceImpl;
 
-import com.Ebook.Dao.BookinfoDao;
+import com.Ebook.Dao.BookDao;
 import com.Ebook.Dao.OrderItemsDao;
+import com.Ebook.Entity.Bookcomment;
 import com.Ebook.Entity.Bookinfo;
+import com.Ebook.Repository.BookcommentRepository;
 import com.Ebook.Entity.OrderItems;
 import com.Ebook.Service.ScanningService;
 import com.alibaba.fastjson.JSON;
@@ -15,9 +17,11 @@ import java.util.List;
 @Service
 public class ScanningServiceImpl implements ScanningService {
     @Autowired
-    private BookinfoDao repo;
+    private BookDao repo;
     @Autowired
     private OrderItemsDao oirepo;
+    @Autowired
+    private BookcommentRepository bcrepo;
 
     @Override
     public JSONArray GetBookService(){
@@ -28,8 +32,10 @@ public class ScanningServiceImpl implements ScanningService {
                 books.remove(deletedbook);
             }
         }
-        return JSONArray.parseArray(JSON.toJSONString(books));
+        JSONArray array = JSONArray.parseArray(JSON.toJSONString(books));
+        return array;
     }
+
 
     @Override
     public Bookinfo ModifyService(String bookstring){
@@ -51,5 +57,11 @@ public class ScanningServiceImpl implements ScanningService {
         }
         repo.deleteByBnum(bnum);
         return bnum;
+    }
+
+    @Override
+    public List<String> GetCommentService(int bnum){
+        Bookcomment comment = repo.Bkcomm_findByBnum(bnum);
+        return comment.getComment();
     }
 }

@@ -29,6 +29,12 @@ public class ScanningController{
         return ResponseUtil.Success(Service.GetBookService());
     }
 
+    @CrossOrigin(origins = "http://localhost:8081")
+    @RequestMapping("/comment")
+    public Response GetComment(@RequestParam(required = true) int bnum)  throws IOException{
+        return ResponseUtil.Success(Service.GetCommentService(bnum));
+    }
+
 
     @CrossOrigin(origins = "http://localhost:8081")
     @RequestMapping("/modifying")
