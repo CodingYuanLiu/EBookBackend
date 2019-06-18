@@ -4,6 +4,7 @@ import com.Ebook.Dao.BookDao;
 import com.Ebook.Dao.OrderItemsDao;
 import com.Ebook.Entity.Bookcomment;
 import com.Ebook.Entity.Bookinfo;
+import com.Ebook.Entity.Comment;
 import com.Ebook.Repository.BookcommentRepository;
 import com.Ebook.Entity.OrderItems;
 import com.Ebook.Service.ScanningService;
@@ -60,7 +61,7 @@ public class ScanningServiceImpl implements ScanningService {
     }
 
     @Override
-    public List<String> GetCommentService(int bnum){
+    public List<Comment> GetCommentService(int bnum){
         Bookcomment comment = repo.Bkcomm_findByBnum(bnum);
         return comment.getComment();
     }

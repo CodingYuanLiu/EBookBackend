@@ -9,7 +9,7 @@ import java.util.List;
 @Document(collection = "Bookcomment")
 public class Bookcomment {
     private int bnum;
-    private List<String> comment;
+    private List<Comment> comment;
     public void setBnum(int bnum){
         this.bnum = bnum;
     }
@@ -18,11 +18,11 @@ public class Bookcomment {
         return this.bnum;
     }
 
-    public List<String> getComment(){
+    public List<Comment> getComment(){
         return this.comment;
     }
 
-    public void setComment(List<String > comment){
+    public void setComment(List<Comment> comment){
         this.comment = comment;
     }
 }
