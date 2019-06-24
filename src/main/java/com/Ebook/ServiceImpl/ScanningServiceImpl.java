@@ -63,6 +63,9 @@ public class ScanningServiceImpl implements ScanningService {
     @Override
     public List<Comment> GetCommentService(int bnum){
         Bookcomment comment = repo.Bkcomm_findByBnum(bnum);
-        return comment.getComment();
+        if(comment == null)
+            return null;
+        else
+            return comment.getComment();
     }
 }
