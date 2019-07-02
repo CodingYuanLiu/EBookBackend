@@ -42,4 +42,10 @@ public class BookDaoImpl implements BookDao {
     public Bookcomment Bkcomm_findByBnum(int bnum){
         return bookcommentRepo.findByBnum(bnum);
     }
+
+    @Override
+    public void addComment(Bookcomment comment){
+        //bookcommentRepo.deleteByBnum(comment.getBnum());
+        bookcommentRepo.save(comment);
+    }
 }

@@ -68,4 +68,16 @@ public class ScanningServiceImpl implements ScanningService {
         else
             return comment.getComment();
     }
+    @Override
+    public void AddCommentService(String bnumstr,String username,String comment){
+        int bnum = Integer.parseInt(bnumstr);
+        Bookcomment oldcomment=repo.Bkcomm_findByBnum(bnum);
+        if(oldcomment == null){
+            oldcomment = new Bookcomment(bnum,username,comment);
+        }
+        else{
+            oldcomment.addComment(new Comment(username,comment));
+        }
+        repo.addComment(oldcomment);
+    }
 }

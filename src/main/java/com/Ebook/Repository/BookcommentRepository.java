@@ -15,4 +15,7 @@ public interface BookcommentRepository extends MongoRepository<Bookcomment,Long>
     public Bookcomment findByBnum(int bnum);
 
     public List<Bookcomment> findAll();
+
+    public void deleteByBnum(int bnum);
+    public Bookcomment save(Bookcomment comment);
 }

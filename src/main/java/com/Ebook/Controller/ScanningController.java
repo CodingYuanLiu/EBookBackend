@@ -49,4 +49,13 @@ public class ScanningController{
         Service.DeleteBookService(bnumstr);
         return ResponseUtil.Success();
     }
+
+    @CrossOrigin(origins="http://localhost:8081")
+    @RequestMapping("/addcomment")
+    public Response AddComment(@RequestParam(required=true,defaultValue = "")String bnumstr,
+                               @RequestParam(required=true,defaultValue = "")String username,
+                               @RequestParam(required=true,defaultValue = "")String comment){
+        Service.AddCommentService(bnumstr,username,comment);
+        return ResponseUtil.Success();
+    }
 }

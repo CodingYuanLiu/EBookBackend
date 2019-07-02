@@ -1,5 +1,6 @@
 package com.Ebook.Service;
 
+import com.Ebook.Entity.Bookcomment;
 import com.Ebook.Entity.Bookinfo;
 import com.Ebook.Entity.Comment;
 import com.alibaba.fastjson.JSONArray;
@@ -11,4 +12,5 @@ public interface ScanningService {
     public Bookinfo ModifyService(String bookstring);
     public int DeleteBookService(String bnumstr);
     public List<Comment> GetCommentService(int bnum);
+    public void AddCommentService(String bnumstr,String username,String comment);
 }

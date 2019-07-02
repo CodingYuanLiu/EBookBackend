@@ -7,4 +7,8 @@ public class Comment {
     public void setUsername(String username){this.username=username;}
     public String getComment(){return this.comment;}
     public String getUsername() { return this.username;}
+    public Comment(String username,String comment){
+        this.username = username;
+        this.comment = comment;
+    }
 }
